@@ -1,0 +1,28 @@
+h1{
+    color: rgb(94 145 184);
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.wrapper-item {
+    font-size: 18px;
+    color: #484f56;
+    font-family: sans-serif;
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    border: 3px solid #3495a7;
+    border-radius: 15px;
+    background-color: #d6d6d6;
+    padding: 10px;
+}
+
+.wrapper-item::first-letter {
+    text-transform: capitalize;
+}
