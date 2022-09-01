@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import PokemonCard from './PokemonCard';
 import './PokemonList.css'
 
 export class PokemonList extends Component {
   state = {
-    pokemons: []
+    pokemonLink: []
   }
 
   constructor(props){
@@ -24,44 +25,20 @@ export class PokemonList extends Component {
       }
     ).then(res => {
       res.json().then(pokemon => {
-        pokemon.results.forEach(element => this.fetchEachPokemon(element.url));
+        pokemon.results.forEach(element => this.setState(prevState => ({ pokemonLink: [...prevState.pokemonLink, element.url] })));
       });
     });
   }
 
-  fetchEachPokemon(item){
-    fetch(item, {
-      'method': 'get',
-      'headers': {
-        'access-control-allow-origin' : '*',
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    }).then(res => {
-    
-      res.json().then(pokemon => {
-        this.setState(prevState => ({
-          pokemons: [...prevState.pokemons, {
-            name:pokemon.name,
-            thumbnail: pokemon.sprites.front_default
-          }]
-        }));
-      });
-    });
-  }
-
-  render() {
+  render() { 
     return (
       <>
         <h1>Pokemon List </h1>
         <div className='wrapper'>
-   
-            {this.state.pokemons.map((pokemon, idx) => 
-              <div className='wrapper-item' key={idx}>
-                {pokemon.name} <br />
-                <img src={pokemon.thumbnail} width='70px' height='70px' alt={pokemon.name} title={pokemon.name}/>
-              </div>
+        
+            {this.state.pokemonLink.map((url, idx) => 
+              <PokemonCard url={url} key={idx} />
             )}
- 
         </div>
 
         
