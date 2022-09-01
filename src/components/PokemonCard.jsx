@@ -24,7 +24,7 @@ export class PokemonCard extends Component {
       
         res.json().then(pokemon => {
           this.setState({
-              pokemonName:pokemon.name,
+              pokemonName: pokemon.name,
               pokemonThumbnail: pokemon.sprites.front_default
           });
         });
@@ -34,7 +34,7 @@ export class PokemonCard extends Component {
   render() {
     return (
       <>
-      <div className='wrapper-item'>
+        <div className='wrapper-item'>
           {this.state.pokemonName} <br />
           <img src={this.state.pokemonThumbnail} width='70px' height='70px' alt={this.state.pokemonName} title={this.state.pokemonName}/>
         </div>
